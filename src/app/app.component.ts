@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalComponent } from './playground/modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-app';
+
+  
 }
