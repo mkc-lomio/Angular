@@ -10,10 +10,12 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
+import { ConvertToSpacesPipe } from './convert-to-spaces.pipe';
 
 
 @NgModule({
-  declarations: [PlaygroundComponent, ChildComponent, ModalComponent],
+  declarations: [PlaygroundComponent, ChildComponent, ModalComponent,
+    ConvertToSpacesPipe],
   imports: [
     CommonModule,
     RouterModule.forRoot(playgroundRoutes),

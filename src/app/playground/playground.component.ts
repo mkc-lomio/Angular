@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import { IPlayer } from './player.interface';
 
 @Component({
   selector: 'app-playground',
@@ -27,18 +28,43 @@ price1: number = 39.00;
 price2: number = 2.99;
 animal: string = "Lion";
 isModalClose: boolean = false;
+players: IPlayer[] = [
+  {
+    id: 1,
+    name: 'Lebron James'
+  },
+  {
+    id: 2,
+    name: 'Allen Iverson'
+  }
+];
+
+//Backing Variable
+private _amount: number = 0;
+get amount(): number {
+  // return amount from private storage
+  return this._amount
+}
+set amount(value:number){
+  // retain amount from private storage
+  this._amount = value;
+  console.log('setter',value)
+}
+rating: string = "5 star rating"
+outputEmitterMessage: string = "";
 
   constructor(private cdr: ChangeDetectorRef,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.amount = 1000; // GETTER & SETTER IMPLEMENTATION
   }
 
   changeHelloWorld(){
     this.helloWorld = "Hello! Marc Kenneth Lomio"
     this.cdr.detectChanges();
   }
-
+  
   showModal(){
     const dialogRef = this.dialog.open(ModalComponent, {
        width: '460px',
@@ -54,5 +80,9 @@ isModalClose: boolean = false;
         this.cdr.detectChanges();
       }
     });
+  }
+
+  showNotification(event: any){
+    this.outputEmitterMessage = event.message
   }
 }

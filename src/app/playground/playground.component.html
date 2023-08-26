@@ -1,8 +1,11 @@
 <!-- Interpolation: Template Expression -->
 <h1>{{helloWorld}}</h1> <!-- One way binding -->
 
-<app-child></app-child> <!-- Show child to parent component-->
-
+<!-- Nested Component --> 
+<app-child [rating]="rating" [userName]="userName"
+(notify)="showNotification($event)"
+></app-child> <!-- Show child to parent component-->
+<p>{{outputEmitterMessage}}</p>
 
  <!--For Loop-->
  <div *ngFor="let location of locations">
@@ -47,3 +50,6 @@
    <button mat-raised-button color="primary" (click)="showModal()">Show Modal</button>
    <h1>{{animal}}</h1> 
    <p>Modal Close? {{isModalClose}}</p>
+
+   <!--Custom Pipes-->
+   <h1>{{'Joseph - - Aquiono' | convertToSpaces:'- -'}}</h1> 
