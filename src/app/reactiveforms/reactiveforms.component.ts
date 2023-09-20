@@ -15,6 +15,27 @@ import { FormBuilder } from "@angular/forms";
   styleUrls: ["./reactiveforms.component.scss"],
 })
 export class ReactiveformsComponent implements OnInit {
+  cities = ["Mohali", "Chandigarh", "Ludhiana", "Amritsar"];
+  zip_codes = ["282001", "456123", "123456", "140412"];
+  passwordHide = true;
+  athleteForm: any;
+  fileName = "";
+  countries = [
+    {
+      id: "us",
+      name: "United States",
+    },
+    {
+      id: "uk",
+      name: "United Kingdom",
+    },
+    {
+      id: "ca",
+      name: "Canada",
+    },
+  ];
+
+  country1 = "us";
   profileForm = new FormGroup(
     {
       firstName: new FormControl("", [
@@ -35,15 +56,10 @@ export class ReactiveformsComponent implements OnInit {
       confirmPassword: new FormControl("", [Validators.required]),
       gender: new FormControl("male", []),
       acceptTerms: new FormControl(false),
+      country: new FormControl(this.country1),
     },
     passwordMatch("password", "confirmPassword")
   );
-
-  cities = ["Mohali", "Chandigarh", "Ludhiana", "Amritsar"];
-  zip_codes = ["282001", "456123", "123456", "140412"];
-  passwordHide = true;
-  athleteForm: any;
-  fileName = "";
 
   constructor(private athleteFB: FormBuilder) {}
 
