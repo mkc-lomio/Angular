@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { PlaygroundModule } from './playground/playground.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveformsModule } from './reactiveforms/reactiveforms.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppRoutingModule,
     PlaygroundModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveformsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

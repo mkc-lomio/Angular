@@ -1,0 +1,49 @@
+<p>reactiveforms works!</p>
+<h1>Profile Form Group Template</h1>
+<form [formGroup]="profileForm">
+    <mat-form-field appearance="outline">
+        <label>First Name: </label>
+        <input matInput formControlName="firstName" />
+        <mat-error class="error-msg" *ngIf="checkError('firstName', 'required','profileForm')">FirstName is required</mat-error>
+        <mat-error class="error-msg" *ngIf="checkError('firstName', 'minlength','profileForm')">Min Length 4</mat-error>
+        <mat-error class="error-msg" *ngIf="checkError('firstName', 'maxlength','profileForm')">Max Length 4</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+        <label>Phone Number: </label>
+        <input matInput formControlName="phoneNumber" />
+        <mat-error class="error-msg" *ngIf="checkError('phoneNumber', 'required','profileForm')">PhoneNumber is required</mat-error>
+        <mat-error class="error-msg" *ngIf="checkError('phoneNumber', 'phoneNumber','profileForm')">Invalid Format</mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field>
+        <input matInput [type]="passwordHide ? 'password' : 'text'" placeholder="Password" formControlName="password" />
+        <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-hint>Example 123PASSWord</mat-hint>
+        <mat-error class="error-msg" *ngIf="checkError('password', 'required','profileForm')">Password is required</mat-error>
+        <mat-error class="error-msg" *ngIf="checkError('password', 'alphanumericpassword','profileForm')">Password isn't Alphanumeric</mat-error>
+    </mat-form-field>
+    <br />
+    <br />
+    <br />
+    <mat-form-field>
+        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+        <mat-error class="error-msg" *ngIf="checkError('confirmPassword', 'required','profileForm')">Confirm Password is required</mat-error>
+        <mat-error class="error-msg" *ngIf="checkError('confirmPassword', 'passwordMismatch','profileForm')">Passwords do not match</mat-error>
+    </mat-form-field>
+    <br />
+    <br />
+    <br />
+    <button [disabled]="!profileForm.valid" (click)="submitForm(profileForm.value)">Submit profileForm</button>
+</form>
+
+<h1>Athlete Form Builder Template</h1>
+<form [formGroup]="athleteForm">
+    <mat-form-field appearance="outline">
+        <label>Full Name: </label>
+        <input matInput formControlName="fullName" />
+        <mat-error class="error-msg" *ngIf="checkError('fullName', 'required','athleteForm')">FullName is required</mat-error>
+    </mat-form-field>
+    <br />
+    <button [disabled]="!athleteForm.valid" (click)="submitForm(athleteForm.value)">Submit athleteForm</button>
+</form>
