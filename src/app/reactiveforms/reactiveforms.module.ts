@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatIconModule } from "@angular/material/icon";
+import { AutocompleteLibModule } from "angular-ng-autocomplete";
 
 @NgModule({
   declarations: [ReactiveformsComponent],
@@ -16,6 +17,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    AutocompleteLibModule,
     RouterModule.forRoot(reactiveForms)
   ],
 })
