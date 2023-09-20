@@ -33,16 +33,21 @@ export class ReactiveformsComponent implements OnInit {
         beAValidPasswordValidator(),
       ]),
       confirmPassword: new FormControl("", [Validators.required]),
-      gender: new FormControl("male", [])
+      gender: new FormControl("male", []),
+      acceptTerms: new FormControl(false)
     },
     passwordMatch("password", "confirmPassword")
   );
 
+  cities = ["Mohali", "Chandigarh", "Ludhiana", "Amritsar"];
+  zip_codes = ["282001", "456123", "123456", "140412"];
   passwordHide = true;
-
   athleteForm: any;
 
-  constructor(private athleteFB: FormBuilder) {}
+  constructor(private athleteFB: FormBuilder) {
+
+    
+  }
 
   ngOnInit(): void {
     this.initialize();
@@ -53,8 +58,17 @@ export class ReactiveformsComponent implements OnInit {
   }
 
   initForm(): void {
+    const defaultCities = ["Mohali", "Amritsar"];
+    const defaultZipCodes = ["456123"];
+
     this.athleteForm = this.athleteFB.group({
       fullName: ["", [Validators.required]],
+      cities: this.athleteFB.array(
+        this.cities.map(x => defaultCities.indexOf(x) > -1)
+      ),
+      zip_codes: this.athleteFB.array(
+        this.zip_codes.map(x => defaultZipCodes.indexOf(x) > -1)
+      )
     });
   }
 
@@ -71,6 +85,9 @@ export class ReactiveformsComponent implements OnInit {
     }
     return null;
   }
+
+    // convenience getter for easy access to form fields
+    get formControls() { return this.profileForm.controls; }
 
   /** FOR REMOVING AND SETTING UP AGAIN THE VALIDATIONS 
       this.profileForm.controls["phoneNumber"].clearValidators();
