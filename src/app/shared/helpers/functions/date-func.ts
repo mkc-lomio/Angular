@@ -21,4 +21,7 @@ export function getCurrentDate(): any {
     const now = new Date();
     return now.toISOString();
   }
-  
+
+  /* References: 
+  * https://stackoverflow.com/questions/11526504/minimum-and-maximum-date
+  */
