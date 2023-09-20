@@ -124,6 +124,15 @@
         &nbsp;<span>{{zipCode}}</span>
     </span>
     <br />
+    <h1>DATE</h1>
+    <input type="text" id="picker" readonly [value]="startDate" placeholder="Choose a date" [matDatepicker]="startPicker" (dateChange)="startDateChangeHandler($event.value)" />
+    <button type="button" (click)="startPicker.open()">Pick a start Date</button>
+    <mat-datepicker #startPicker></mat-datepicker>
+    <br />
+    <input type="text" id="picker" readonly [value]="endDate" placeholder="Choose a date" [matDatepicker]="endPicker" (dateChange)="endDateChangeHandler($event.value)" />
+    <button type="button" (click)="endPicker.open()">Pick a end Date</button>
+    <mat-datepicker #endPicker></mat-datepicker>
+    <br />
     <button [disabled]="!athleteForm.valid" (click)="submitForm(athleteForm.value)">Submit athleteForm</button>
     <pre>
         {{athleteForm.value | json}}

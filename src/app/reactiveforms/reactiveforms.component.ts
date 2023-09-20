@@ -8,6 +8,7 @@ import {
 } from "../shared/helpers/validators/customer-validator";
 import { getCountryPhoneNumberPattern } from "../shared/helpers/functions/country-phone-pattern";
 import { FormBuilder } from "@angular/forms";
+import { getUTCDateTime } from "../shared/helpers/functions/date-func";
 
 @Component({
   selector: "app-reactiveforms",
@@ -92,6 +93,8 @@ export class ReactiveformsComponent implements OnInit {
   placeholder: string = "Enter the Country Name";
   keyword = "name";
   historyHeading: string = "Recently selected";
+  startDate: any;
+  endDate: any;
 
   constructor(private fb: FormBuilder) {}
 
@@ -137,11 +140,20 @@ export class ReactiveformsComponent implements OnInit {
         zip_codes: this.fb.array(
           this.zip_codes.map((x) => defaultZipCodes.indexOf(x) > -1)
         ),
+        startDate: new FormControl(getUTCDateTime()),
+        endDate: new FormControl(getUTCDateTime()),
       },
       {
         validator: [confirmPasswordValidator("password", "confirmPassword")],
       }
     );
+
+    this.initFormValues();
+  }
+
+  initFormValues() {
+    this.startDate = new Date(this.athleteForm.get("startDate").value);
+    this.endDate = new Date(this.athleteForm.get("endDate").value);
   }
 
   submitForm(form: any) {
@@ -176,5 +188,20 @@ export class ReactiveformsComponent implements OnInit {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     console.log(file);
+  }
+
+  // Date
+  startDateChangeHandler(date: Date) {
+    const stringDate: string = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
+    this.athleteForm.get("startDate").setValue(stringDate);
+  }
+
+  endDateChangeHandler(date: Date) {
+    const stringDate: string = `${
+      date.getMonth() + 1
+    }/${date.getDate()}/${date.getFullYear()}`;
+    this.athleteForm.get("endDate").setValue(stringDate);
   }
 }
