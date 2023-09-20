@@ -57,22 +57,67 @@ export class ReactiveformsComponent implements OnInit {
       gender: new FormControl("male", []),
       acceptTerms: new FormControl(false),
       country: new FormControl(this.country1),
-      countryName: new FormControl("", [Validators.required])
+      countryName: new FormControl("", [Validators.required]),
     },
     passwordMatch("password", "confirmPassword")
   );
 
-   countriesReactive = ['Albania', 'Andorra', 'Armenia', 'Austria', 'Azerbaijan', 'Belarus',
-    'Belgium', 'Bosnia & Herzegovina', 'Bulgaria', 'Croatia', 'Cyprus',
-    'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Georgia',
-    'Germany', 'Greece', 'Hungary', 'Iceland', 'India', 'Ireland', 'Italy', 'Kosovo',
-    'Latvia', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Macedonia', 'Malta',
-    'Moldova', 'Monaco', 'Montenegro', 'Netherlands', 'Norway', 'Poland',
-    'Portugal', 'Romania', 'Russia', 'San Marino', 'Serbia', 'Slovakia', 'Slovenia',
-    'Spain', 'Sweden', 'Switzerland', 'Turkey', 'Ukraine', 'United Kingdom', 'Vatican City'];
-     placeholder: string = 'Enter the Country Name';
-     keyword = 'name';
-     historyHeading: string = 'Recently selected';
+  countriesReactive = [
+    "Albania",
+    "Andorra",
+    "Armenia",
+    "Austria",
+    "Azerbaijan",
+    "Belarus",
+    "Belgium",
+    "Bosnia & Herzegovina",
+    "Bulgaria",
+    "Croatia",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Estonia",
+    "Finland",
+    "France",
+    "Georgia",
+    "Germany",
+    "Greece",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Ireland",
+    "Italy",
+    "Kosovo",
+    "Latvia",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Macedonia",
+    "Malta",
+    "Moldova",
+    "Monaco",
+    "Montenegro",
+    "Netherlands",
+    "Norway",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Russia",
+    "San Marino",
+    "Serbia",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+    "Switzerland",
+    "Turkey",
+    "Ukraine",
+    "United Kingdom",
+    "Vatican City",
+  ];
+  placeholder: string = "Enter the Country Name";
+  keyword = "name";
+  historyHeading: string = "Recently selected";
 
   constructor(private athleteFB: FormBuilder) {}
 

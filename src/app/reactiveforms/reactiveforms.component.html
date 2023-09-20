@@ -74,28 +74,30 @@
     <br />
     <h1>AutoComplete</h1>
     <div class="ng-autocomplete">
-        <ng-autocomplete #ngAutoCompleteStatic
-                         [data]="countriesReactive"
-                         formControlName="countryName"
-                         [initialValue]=""
-                         [placeholder]="placeholder"
-                         [searchKeyword]="keyword"
-                         historyIdentifier="countriesReactiveList"
-                         [historyHeading]="historyHeading"
-                         notFoundText="Not found"
-                         [itemTemplate]="itemTemplateStatic"
-                         [notFoundTemplate]="notFoundTemplate">
+        <ng-autocomplete
+            #ngAutoCompleteStatic
+            [data]="countriesReactive"
+            formControlName="countryName"
+            [initialValue]=""
+            [placeholder]="placeholder"
+            [searchKeyword]="keyword"
+            historyIdentifier="countriesReactiveList"
+            [historyHeading]="historyHeading"
+            notFoundText="Not found"
+            [itemTemplate]="itemTemplateStatic"
+            [notFoundTemplate]="notFoundTemplate"
+        >
         </ng-autocomplete>
 
         <ng-template #itemTemplateStatic let-item>
-          <a [innerHTML]="item"></a>
+            <a [innerHTML]="item"></a>
         </ng-template>
 
         <ng-template #notFoundTemplate let-notFound>
-          <div [innerHTML]="notFound"></div>
+            <div [innerHTML]="notFound"></div>
         </ng-template>
-      </div>
-      <br />
+    </div>
+    <br />
     <button [disabled]="!profileForm.valid" (click)="submitForm(profileForm.value)">Submit profileForm</button> &nbsp;
     <pre>
         {{profileForm.value | json}}
