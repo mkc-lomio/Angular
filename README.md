@@ -36,5 +36,5 @@ import {BrowserAnimationsModule} from '@angular/platform browser/animations';
 
 Step 3
 include the following in your app's index.html:
-<link href="../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+``<link href="../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">``
 
