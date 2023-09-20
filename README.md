@@ -29,6 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Fixes
 Step 1
 npm install --save @angular/material @angular/cdk
+
 Step 2
 npm install --save @angular/animations
 import {BrowserAnimationsModule} from '@angular/platform browser/animations';
