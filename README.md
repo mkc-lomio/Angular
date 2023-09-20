@@ -1,37 +1,39 @@
-# Angular Basic Functionalities
+# AngularSpa
 
-Pre-requisites
-Install Angular Material ` ng add @angular/material `
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-Setting up
-- ng new project-name
-- ng add @angular/material    
+## Development server
 
-1. What is Angular Material? Angular Material is a design and component library for building web applications with Angular framework. It's a set of ready-to-use UI components that follow the Material Design guidelines created by Google. 
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-1.1 Angular Dialog https://material.angular.io/components/dialog
+## Code scaffolding
 
-2. Interface
-  
-![Screenshot 2023-08-25 170550](https://github.com/mkc-lomio/Angular/assets/78136159/9a606334-c2a9-4f77-a86f-6cee418c786d)
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+## Build
 
-3. LifeCycle Hooks
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-3.1 ngOnChanges: Called when an input property of the component changes.
+## Running unit tests
 
-3.2 ngOnInit: Called once, after the component and its child views have been initialized.
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-3.3 ngDoCheck: Called during every change detection run, allowing you to detect and act upon changes.
+## Running end-to-end tests
 
-3.4 ngAfterContentInit: Called after content (e.g., projected content) has been initialized.
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-3.5 ngAfterContentChecked: Called after every check of the component's content.
+## Further help
 
-3.6 ngAfterViewInit: Called after the component's view (and its child views) have been initialized.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-3.7 ngAfterViewChecked: Called after every check of the component's view and its child views.
+# Fixes
+Step 1
+npm install --save @angular/material @angular/cdk
+Step 2
+npm install --save @angular/animations
+import {BrowserAnimationsModule} from '@angular/platform browser/animations';
 
-3.8 ngOnDestroy: Called just before the component is destroyed and removed from the DOM.
-
+Step 3
+include the following in your app's index.html:
+<link href="../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">
 
