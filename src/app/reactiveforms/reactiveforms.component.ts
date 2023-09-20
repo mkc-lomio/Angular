@@ -33,6 +33,7 @@ export class ReactiveformsComponent implements OnInit {
         beAValidPasswordValidator(),
       ]),
       confirmPassword: new FormControl("", [Validators.required]),
+      gender: new FormControl("male", [])
     },
     passwordMatch("password", "confirmPassword")
   );

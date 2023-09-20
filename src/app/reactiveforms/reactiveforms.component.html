@@ -16,25 +16,39 @@
         <mat-error class="error-msg" *ngIf="checkError('phoneNumber', 'phoneNumber','profileForm')">Invalid Format</mat-error>
     </mat-form-field>
     <br />
-    <mat-form-field>
-        <input matInput [type]="passwordHide ? 'password' : 'text'" placeholder="Password" formControlName="password" />
+    <mat-form-field appearance="outline">
+        <label>Password </label>
+        <input matInput [type]="passwordHide ? 'password' : 'text'" formControlName="password" />
         <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
         <mat-hint>Example 123PASSWord</mat-hint>
         <mat-error class="error-msg" *ngIf="checkError('password', 'required','profileForm')">Password is required</mat-error>
         <mat-error class="error-msg" *ngIf="checkError('password', 'alphanumericpassword','profileForm')">Password isn't Alphanumeric</mat-error>
     </mat-form-field>
     <br />
-    <br />
-    <br />
-    <mat-form-field>
-        <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword" />
+    <mat-form-field appearance="outline">
+        <label>Confirm Password </label>
+        <input matInput type="password" formControlName="confirmPassword" />
         <mat-error class="error-msg" *ngIf="checkError('confirmPassword', 'required','profileForm')">Confirm Password is required</mat-error>
         <mat-error class="error-msg" *ngIf="checkError('confirmPassword', 'passwordMismatch','profileForm')">Passwords do not match</mat-error>
     </mat-form-field>
     <br />
+    <div class="group-gap">
+        <h5>Gender</h5>
+
+        <div class="custom-control custom-radio">
+            <input id="male" type="radio" class="custom-control-input" value="male" name="gender" formControlName="gender" />
+            <label class="custom-control-label" for="male">Male</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input id="female" type="radio" class="custom-control-input" value="female" name="gender" formControlName="gender" />
+            <label class="custom-control-label" for="female">Female</label>
+        </div>
+    </div>
     <br />
-    <br />
-    <button [disabled]="!profileForm.valid" (click)="submitForm(profileForm.value)">Submit profileForm</button>
+    <button [disabled]="!profileForm.valid" (click)="submitForm(profileForm.value)">Submit profileForm</button> &nbsp;
+    <button  (click)="submitForm(profileForm.value)">See ProfileForm Values in Console</button>
+
 </form>
 
 <h1>Athlete Form Builder Template</h1>
