@@ -16,7 +16,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    RouterModule.forRoot(reactiveForms),
+    RouterModule.forRoot(reactiveForms)
   ],
 })
 export class ReactiveformsModule {}

@@ -34,7 +34,7 @@ export class ReactiveformsComponent implements OnInit {
       ]),
       confirmPassword: new FormControl("", [Validators.required]),
       gender: new FormControl("male", []),
-      acceptTerms: new FormControl(false)
+      acceptTerms: new FormControl(false),
     },
     passwordMatch("password", "confirmPassword")
   );
@@ -43,11 +43,9 @@ export class ReactiveformsComponent implements OnInit {
   zip_codes = ["282001", "456123", "123456", "140412"];
   passwordHide = true;
   athleteForm: any;
+  fileName = "";
 
-  constructor(private athleteFB: FormBuilder) {
-
-    
-  }
+  constructor(private athleteFB: FormBuilder) {}
 
   ngOnInit(): void {
     this.initialize();
@@ -64,11 +62,11 @@ export class ReactiveformsComponent implements OnInit {
     this.athleteForm = this.athleteFB.group({
       fullName: ["", [Validators.required]],
       cities: this.athleteFB.array(
-        this.cities.map(x => defaultCities.indexOf(x) > -1)
+        this.cities.map((x) => defaultCities.indexOf(x) > -1)
       ),
       zip_codes: this.athleteFB.array(
-        this.zip_codes.map(x => defaultZipCodes.indexOf(x) > -1)
-      )
+        this.zip_codes.map((x) => defaultZipCodes.indexOf(x) > -1)
+      ),
     });
   }
 
@@ -86,8 +84,10 @@ export class ReactiveformsComponent implements OnInit {
     return null;
   }
 
-    // convenience getter for easy access to form fields
-    get formControls() { return this.profileForm.controls; }
+  // convenience getter for easy access to form fields
+  get formControls() {
+    return this.profileForm.controls;
+  }
 
   /** FOR REMOVING AND SETTING UP AGAIN THE VALIDATIONS 
       this.profileForm.controls["phoneNumber"].clearValidators();
@@ -96,4 +96,14 @@ export class ReactiveformsComponent implements OnInit {
       this.profileForm.controls['phoneNumber'].reset();
       this.profileForm.controls['phoneNumber'].disable();
    */
+
+  // FILE UPLOAD - REFERENCE: https://blog.angular-university.io/angular-file-upload/
+  onFileUpload(event: any): void {
+    console.log(event.target.files);
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file);
+  }
 }
