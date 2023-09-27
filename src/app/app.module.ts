@@ -6,6 +6,7 @@ import { PlaygroundModule } from './playground/playground.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveformsModule } from './reactiveforms/reactiveforms.module';
+import { PaginationModule } from './pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReactiveformsModule } from './reactiveforms/reactiveforms.module';
     PlaygroundModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ReactiveformsModule
+    ReactiveformsModule,
+    PaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
