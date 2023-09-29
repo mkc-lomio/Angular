@@ -5,7 +5,6 @@ import { dateSingleDigitWithLeadingZeros, getISODateTime, getUTCDateTime } from 
 import { EmployeeReimbursementService } from 'src/app/shared/services/employee-reimbursement.service';
 
 
-
 @Component({
   selector: "app-employee-reimbursement-modal",
   templateUrl: "./employee-reimbursement-modal.component.html",
@@ -95,7 +94,9 @@ export class EmployeeReimbursementModalComponent implements OnInit {
   formStatus: string = "";
   employeeReimbursementStatus: string = "";
   requestedDate: any;
+  requestedMinDate: Date = new Date();
   transactionDate: any;
+  transactionMaxDate: Date = new Date();
   employeeReimbursementId: any;
   employeeReimbursementDetails: any;
 
