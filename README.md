@@ -38,3 +38,33 @@ Step 3
 include the following in your app's index.html:
 ``<link href="../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" rel="stylesheet">``
 
+
+### Typescript wait function to finish before proceeding `Promises`
+
+someAsyncFunction(): Promise<void> {
+      return new Promise((resolve) => {
+        // Simulate an asynchronous operation
+        setTimeout(() => {
+          console.log('Async operation complete');
+          resolve();
+        }, 1000);
+      });
+    }
+    
+    async  main() {
+      await this.someAsyncFunction();
+      console.log('Proceed after async operation');
+    }  
+
+### Work around fixed for ts datetime passing to c# datetime
+
+Note: root cause is the time.
+
+  export function dateSingleDigitWithLeadingZeros(dateNum:number) {
+    if(dateNum < 10)
+     return String(dateNum).padStart(2, '0');
+    return dateNum
+  }
+
+    let stringDate: string = `${date.getFullYear()}-${dateSingleDigitWithLeadingZeros(date.getMonth() + 1)}-${dateSingleDigitWithLeadingZeros(date.getDate())}T00:00:00.000Z`
+    // toISOString Format - YYYY-MM-ddT00:00:00.000Z example 2023-09-29T00:00:00.000Z 
