@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit,ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { EmployeeReimbursementModalComponent } from './employee-reimbursement-modal/employee-reimbursement-modal.component';
 import { EmployeeReimbursementModel } from '../shared/models/employee-reimbursement-model';
@@ -12,106 +11,116 @@ import { EmployeeReimbursementService } from '../shared/services/employee-reimbu
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-  
   displayedColumns: string[] = [
-    'type',
-    'totalAmount',
-    'status',
-    'reviewer',
-    'transactionDate',
-    'requestedDate',
-     "action"
+    "type",
+    "totalAmount",
+    "status",
+    "reviewer",
+    "transactionDate",
+    "requestedDate",
+    "action",
   ];
 
   empReimbursementData: EmployeeReimbursementModel[] = [];
 
-  dataSource: MatTableDataSource<EmployeeReimbursementModel> = new MatTableDataSource();
-  @ViewChild('paginator') paginator: any;
+  dataSource: MatTableDataSource<EmployeeReimbursementModel> =
+    new MatTableDataSource();
+  @ViewChild("paginator") paginator: any;
   pageSizes = [10, 30, 50, 100];
   pageSize = 10;
   pageNumber = 0;
   search = "";
-  sortColumn = "TransactionDate"
-  sortType = "ASC"
+  sortColumn = "TransactionDate";
+  sortType = "DESC";
   dataCount = 0;
   formStatus = "Create";
 
-  constructor(private _employeeReimbursementService: EmployeeReimbursementService,
+  constructor(
+    private _employeeReimbursementService: EmployeeReimbursementService,
     private _cdr: ChangeDetectorRef,
-    public dialog: MatDialog){
-
-  }
+    public dialog: MatDialog
+  ) {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  
-  ngOnInit(){
-    console.log("Hello World")
+
+  ngOnInit() {
     this.getPaginatedEmployeeReimbursement();
   }
 
-  dataColumnChecker(data: any){
-    if(data == null || data == undefined || data == "")
-    return "N/A"
-   return data
+  dataColumnChecker(data: any) {
+    if (data == null || data == undefined || data == "") return "N/A";
+    return data;
   }
 
-  page(event: any){
-    console.log(event)
+  page(event: any) {
     this.pageNumber = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getPaginatedEmployeeReimbursement();
   }
 
-  getPaginatedEmployeeReimbursement(){
-    let data = {
-      "pageNumber": this.pageNumber + 1,
-      "pageSize": this.pageSize,
-      "search": this.search,
-      "sortColumn": this.sortColumn,
-      "sortType": this.sortType
-    }
-    this._employeeReimbursementService.getEmployeeReimbursementPaginatedData(data).subscribe(result => {
-     this.dataSource = new MatTableDataSource(result.data);
-     this.dataCount = result.count;
-     this._cdr.detectChanges();
-     console.log(result)
-    }, error => {
-      console.log(error);
-    })
+  buildPaginatedEmployeeReimbursementData() {
+    return {
+      employeeId: 1,
+      pageNumber: this.pageNumber + 1,
+      pageSize: this.pageSize,
+      search: this.search,
+      sortColumn: this.sortColumn,
+      sortType: this.sortType,
+    };
   }
-  
-  capitalizeFirstLetter(str: any){
+
+  getPaginatedEmployeeReimbursement() {
+    let data = this.buildPaginatedEmployeeReimbursementData();
+    this._employeeReimbursementService
+      .getEmployeeReimbursementPaginatedData(data)
+      .subscribe(
+        (result) => {
+          this.dataSource = new MatTableDataSource(result.data);
+          this.dataCount = result.count;
+          this._cdr.detectChanges();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  capitalizeFirstLetter(str: any) {
     return str.charAt(0).toUpperCase() + str.slice(1);
-   }
+  }
 
-   onSearchChange(event: any){
+  onSearchChange(event: any) {
     this.getPaginatedEmployeeReimbursement();
-   }
+  }
 
-   openCUDialog(status: string,data?: any){
-    this.formStatus = status
+  openCUDialog(status: string, data?: any) {
+    this.formStatus = status;
 
     const dialogRef = this.dialog.open(EmployeeReimbursementModalComponent, {
-      width: this.formStatus === "Delete" ? "400px" : '500px', 
-     height: this.formStatus === "Delete" ? "100px" : '700px',
-      data: {formStatus:  this.formStatus, empReimbursementFromPaginatedData: data},
-   });
+      width: this.formStatus === "Delete" ? "373px" : "500px",
+      height: this.formStatus === "Delete" ? "153px" : "700px",
+      data: {
+        formStatus: this.formStatus,
+        empReimbursementFromPaginatedData: data,
+      },
+    });
 
-   dialogRef.afterClosed().subscribe(result => {
-    this.getPaginatedEmployeeReimbursement();
-    if(result != undefined){
-       
-     }
-   });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.getPaginatedEmployeeReimbursement();
+      if (result != undefined) {
+      }
+    });
+  }
 
-    console.log(data)
-    console.log("Hello!")
+  showTooltip(emp: any): any {
+    let htmlContent: string = ""; 
+    if(emp.status === "Approved")
+      htmlContent = `<p>Approved Date: ${emp.approvedDate}</p><br />`
 
-   }
-
-
-
-  
+     htmlContent = htmlContent + `<p>Remarks: ${emp.reviewerRemarks}</p>`;
+    return htmlContent;
+  }
 }
+

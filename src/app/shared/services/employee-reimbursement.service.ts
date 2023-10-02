@@ -63,6 +63,12 @@ deleteEmployeeReimbursementById(id: any) {
 }
 
 
+cancelEmployeeReimbursement(id: any): Observable<any> {
+  let url= `${environment.api}/api/EmployeeReimbursement/Cancellation?id=${id}`;
+  
+  let body=null;
+  return this.http.put(url, body);
+}
 
 
 getWeatherForecast() {

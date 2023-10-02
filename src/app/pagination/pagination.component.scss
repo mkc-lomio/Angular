@@ -35,3 +35,93 @@
     padding: 3px;
     color: white !important;
 }
+
+.example-button {
+    margin-top: 16px;
+  }
+  
+  .example-tooltip-red {
+    background: #b71c1c;
+  }
+  
+
+.table-container {
+    padding: 1em 2em;
+    font-family: Poppins;
+}
+
+.btn-create {
+    background-color: #00964b;
+    font-size: 12px;
+    color: white !important;
+    font-family: Poppins;
+    margin-left: 2em;
+    min-width: 113px;
+    border-radius: 7px;
+}
+
+.tbl-h-name {
+    font-weight: bold;
+}
+
+.tbl-container {
+    margin-top: 1em;
+}
+
+::ng-deep.tbl-style {
+    .mat-mdc-header-cell, .mat-mdc-cell {
+        font-family: Poppins !important;
+        font-size: 12px;
+    }
+
+    .mat-mdc-header-cell { 
+        color: #808080 !important;
+        font-weight: bold !important;
+    }
+
+    .mat-mdc-cell {
+        font-size: 13px;
+    }
+}
+
+.btn-update, .btn-delete {
+    font-size: 12px;
+    color: white !important;
+    font-family: Poppins;
+    margin-right: 5px;
+    border-radius: 7px;
+    padding: 0 1em;
+}
+
+.btn-update {
+    background-color: #007bed;
+}
+
+.btn-delete {
+    background-color: #cf1100;
+}
+
+
+::ng-deep.table-container {
+    .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 14px;
+        height: 35px !important;
+    }
+    
+    .mdc-text-field--outlined .mdc-notched-outline {
+        height: 35px !important;
+    }
+    
+    .mat-mdc-form-field-icon-suffix>.mat-icon {
+        padding: 0 !important;
+        padding-bottom: 15px !important;
+        padding-right: 10px !important;
+        font-size: 17px !important;
+    }
+    
+    .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+        height: 15px !important;
+    }
+}
