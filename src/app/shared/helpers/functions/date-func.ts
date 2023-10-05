@@ -93,6 +93,19 @@ export function getCurrentDate(): any {
         const hour = datetime.getHours();
         return hour >= 12 && hour < 24;
       }
+
+      static  convertToARMYHours(time: string): number{
+        let hour = parseInt(time.substring(0, 2));
+          if(time.includes("PM")){
+            return hour + 12
+          }else if(time.includes("AM")){
+            if(hour == 12)
+               return 0
+            return hour
+          }
+
+          return NaN;
+       }
 }
 
 /*  GET THE HOURS BETWEEN TWO DATES
