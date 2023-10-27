@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveformsModule } from './reactiveforms/reactiveforms.module';
 import { PaginationModule } from './pagination/pagination.module';
+import { RxjsPlaygroundComponent } from './rxjs-playground/rxjs-playground.component';
+import { RxjsPlaygroundModule } from './rxjs-playground/rxjs-playground.module';
+import { CssModule } from './css/css.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { PaginationModule } from './pagination/pagination.module';
     BrowserAnimationsModule,
     MatDialogModule,
     ReactiveformsModule,
-    PaginationModule
+    PaginationModule,
+    RxjsPlaygroundModule,
+    CssModule
   ],
   providers: [],
   bootstrap: [AppComponent]

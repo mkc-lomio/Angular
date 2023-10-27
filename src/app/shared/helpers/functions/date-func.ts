@@ -106,6 +106,151 @@ export function getCurrentDate(): any {
 
           return NaN;
        }
+
+       static generateDateSequence(startDateStr: string, endDateStr: string): string[] {
+        const months: string[] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const startDate = new Date(startDateStr);
+        const endDate = new Date(endDateStr);
+    
+        const dateList: string[] = [];
+    
+        for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+            const formattedDate = `${date.getDate().toString().padStart(2, '0')}-${months[date.getMonth()]}-${date.getFullYear().toString().substr(2, 2)}`;
+            dateList.push(formattedDate);
+        }
+    
+        return dateList;
+    }
+
+    static isWeekend(dateStr: string): boolean {
+      const date = new Date(dateStr);
+      const dayOfWeek = date.getDay();
+      return dayOfWeek === 0 || dayOfWeek === 6;
+    }
+
+
+    static convertToStandardDate(date: string): string {
+      // Convert '21-Sep-23' to '2023-09-21'
+      const parts = date.split('-');
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const monthNumber = (monthNames.indexOf(parts[1]) + 1).toString().padStart(2, '0');
+      return `20${parts[2]}-${monthNumber}-${parts[0]}`;
+    }
+    
+    static convertToCustomDate(date: string): string {
+      // Convert '2023-09-21' to '21-Sep-23'
+      const parts = date.split('-');
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const monthName = monthNames[parseInt(parts[1], 10) - 1];
+      return `${parts[2]}-${monthName}-${parts[0].slice(2)}`;
+    }
+
+    static cutOffStartDate(date: Date){
+      const day = date.getDate();
+
+      if(day == 1)
+       return date;
+       
+       if(day >= 2  && day <= 15){
+        date.setDate(1)
+       }
+
+       if(day >= 16){
+        date.setDate(15)
+       }
+
+       return date;
+    }
+
+
+    static cutOffEndDate(date: Date){
+      const day = date.getDate();
+     
+      if(day <= 15){
+        date.setDate(15)
+      }
+
+      if(day >= 16){
+        const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        date.setDate(lastDayOfMonth)
+      }
+       return date;
+    }
+
+    static formatDateToDDMMYYYY(date: Date): string {
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based, so +1 is needed
+      const year = date.getFullYear();
+    
+      return `${day}/${month}/${year}`;
+    }
+
+    static hoursBetweenDates(date1: Date, date2: Date): number {
+      const msPerHour: number = 1000 * 60 * 60;
+      const differenceInMs: number = date2.getTime() - date1.getTime();
+  
+      return differenceInMs / msPerHour;
+     }
+
+   static getMonthName(date: Date): string {
+      const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return monthNames[date.getMonth()];
+    }
+
+    static  getDayName(date: Date): string {
+      const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      return dayNames[date.getDay()];
+  }
+
+  static formattedDate(date:Date){
+    const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+    return formattedDate;
+  }
+
+    // param: "2023-10-25T10:13:00"; // Expected result: 10:13am
+    static extractTimeWithAmPm(input: string): string {
+      // Parse the input string into a Date object
+      const date = new Date(input);
+  
+      // Extract hours and minutes
+      let hours: number | string = date.getUTCHours();
+      const minutes: number | string = date.getUTCMinutes();
+  
+      // Determine AM or PM
+      const period = hours >= 12 ? 'pm' : 'am';
+  
+      // Convert to 12-hour format
+      if (hours > 12) {
+          hours -= 12;
+      } else if (hours === 0) {
+          hours = 12;
+      }
+  
+      // Ensure double-digit format
+      const formattedHours = String(hours).padStart(2, '0');
+      const formattedMinutes = String(minutes).padStart(2, '0');
+  
+      return `${formattedHours}:${formattedMinutes}${period}`;
+  }
+    
+  
+    static extractTime(dateTimeString: string): string | null {
+    // dateTimeString = "10/24/2023 14:05:00"; // Outputs: 14:05
+      const match = dateTimeString.match(/\d{2}:\d{2}/);
+      return match ? match[0] : null;
+  }
+
+  static parseCustomDate(dateStr: string): Date {
+    // Assuming the dateStr is in the format 'yyyy-MM-dd HH:mm:ss'
+    const [datePart, timePart] = dateStr.split(' ');
+
+    const [year, month, day] = datePart.split('-').map(num => parseInt(num, 10));
+    const [hour, minute, second] = timePart.split(':').map(num => parseInt(num, 10));
+
+    // Note: JavaScript's Date month argument starts from 0 (0 = January, 1 = February, ...)
+    return new Date(year, month - 1, day, hour, minute, second);
+}
 }
 
 /*  GET THE HOURS BETWEEN TWO DATES

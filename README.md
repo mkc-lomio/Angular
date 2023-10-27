@@ -68,3 +68,45 @@ Note: root cause is the time.
 
     let stringDate: string = `${date.getFullYear()}-${dateSingleDigitWithLeadingZeros(date.getMonth() + 1)}-${dateSingleDigitWithLeadingZeros(date.getDate())}T00:00:00.000Z`
     // toISOString Format - YYYY-MM-ddT00:00:00.000Z example 2023-09-29T00:00:00.000Z 
+
+# RXJS
+
+References
+ => https://rxjs.dev/guide/overview
+ => https://writtenforcoders.com/blog/RxJS-Pipe-the-complete-guide 
+
+Rxjs is a library for composing asynchronous and event-based programs by using observable sequences
+
+The essential concepts in RxJS which solve async event management are
+
+- Observable
+
+- Observer
+
+- Subscription 
+    =>  it lets you "subscribe" to changes from an Observable and, when you're done, "unsubscribe" to stop receiving updates. 
+        This helps you manage resources and prevent unnecessary updates in your application.
+
+- Operators
+
+- Subject
+
+- Schedulers
+
+RxJS Operators
+
+1. of => "of" functions create an Observable and when we subscribe to it, it starts emitting its values immediately.
+
+2. from 
+
+3. map => loop
+
+4. switchMap
+
+5. tap
+
+6. take
+
+7. pipe  => It is a method that can perform logic on an observable without altering the original observable.
+
+8. filter => loop data and check condition. if it's correct it emit otherwise exclude
